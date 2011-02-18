@@ -9,16 +9,16 @@ var operations = {
 
 
 }
-http.createServer(function(req, res){
-  var parts = req.url.split("/"),
-      op = operations[parts[1]];
+http.createServer(function(request, response){
+  var parts = request.url.split("/"),
+      operation = operations[parts[1]];
       a = parseInt(parts[2], 10);
       b = parseInt(parts[3], 10);
 
-  var result = op ? op(a,b) : "";
+  var result = operation ? operation(a,b) : "";
 
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end("" + result)
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  response.end("" + result)
 }).listen(3000, "127.0.0.1");
 
 sys.puts("Server Running..")
